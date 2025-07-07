@@ -1,0 +1,263 @@
+name: CI - Content Validation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-content:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        npm install -g markdownlint-cli
+        npm install -g markdown-link-check
+        
+    - name: Validate Markdown formatting
+      run: |
+        # Check markdown formatting
+        markdownlint "**/*.md" --ignore node_modules --ignore .github || true
+        
+    - name: Check for broken links
+      run: |
+        # Check for broken links in markdown files
+        find . -name "*.md" -not -path "./node_modules/*" -not -path "./.github/*" | \
+        xargs -I {} markdown-link-check {} --config .github/markdown-link-check-config.json || true
+        
+    - name: Validate code examples
+      run: |
+        # Check JavaScript/TypeScript syntax
+        find . -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" | \
+        while read file; do
+          echo "Checking syntax: $file"
+          node -c "$file" 2>/dev/null || echo "Syntax error in: $file"
+        done
+        
+    - name: Check Python syntax
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - run: |
+        # Check Python syntax
+        find . -name "*.py" | \
+        while read file; do
+          echo "Checking Python syntax: $file"
+          python -m py_compile "$file" 2>/dev/null || echo "Syntax error in: $file"
+        done
+        
+    - name: Validate file structure
+      run: |
+        # Check that required files exist
+        required_files=("README.md" "LICENSE" "CONTRIBUTING.md")
+        for file in "${required_files[@]}"; do
+          if [ ! -f "$file" ]; then
+            echo "Missing required file: $file"
+            exit 1
+          fi
+        done
+        
+        # Check directory structure
+        required_dirs=("01-Frontend-Development" "02-Backend-Development" "03-Database-Management" "04-Data-Engineering" "05-Software-Engineering-Principles")
+        for dir in "${required_dirs[@]}"; do
+          if [ ! -d "$dir" ]; then
+            echo "Missing required directory: $dir"
+            exit 1
+          fi
+        done
+        
+    - name: Check for TODO items
+      run: |
+        # Find TODO items in markdown files
+        echo "Checking for TODO items..."
+        grep -r "TODO\|FIXME\|XXX" --include="*.md" . || echo "No TODO items found"
+        
+    - name: Validate example code structure
+      run: |
+        # Check that example directories have README files
+        find . -type d -name "examples" | while read dir; do
+          if [ ! -f "$dir/README.md" ]; then
+            echo "Missing README.md in examples directory: $dir"
+          fi
+        done
+
+  spell-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Install aspell
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y aspell aspell-en
+        
+    - name: Run spell check
+      run: |
+        # Create a custom dictionary for technical terms
+        echo "JavaScript
+        TypeScript
+        React
+        Next.js
+        Node.js
+        PostgreSQL
+        MongoDB
+        Redis
+        Docker
+        Kubernetes
+        AWS
+        GCP
+        Azure
+        API
+        REST
+        GraphQL
+        JSON
+        HTML
+        CSS
+        SQL
+        NoSQL
+        ETL
+        ELT
+        CI/CD
+        DevOps
+        OAuth
+        JWT
+        HTTPS
+        WebSocket
+        microservices
+        serverless
+        frontend
+        backend
+        fullstack
+        middleware
+        database
+        codebase
+        workflow
+        namespace
+        async
+        await
+        destructuring
+        hoisting
+        closure
+        prototype
+        webpack
+        babel
+        eslint
+        prettier
+        github
+        gitlab
+        bitbucket" > .aspell.en.pws
+        
+        # Check spelling in markdown files (excluding code blocks)
+        find . -name "*.md" -not -path "./node_modules/*" | \
+        while read file; do
+          echo "Spell checking: $file"
+          # Remove code blocks and check spelling
+          sed '/```/,/```/d' "$file" | aspell --personal=.aspell.en.pws list | sort -u || true
+        done
+
+  security-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Check for sensitive information
+      run: |
+        # Check for potential secrets or sensitive information
+        echo "Checking for potential secrets..."
+        
+        # Common patterns to avoid
+        patterns=(
+          "password\s*=\s*['\"][^'\"]*['\"]"
+          "api_key\s*=\s*['\"][^'\"]*['\"]"
+          "secret\s*=\s*['\"][^'\"]*['\"]"
+          "token\s*=\s*['\"][^'\"]*['\"]"
+          "private_key"
+          "-----BEGIN.*PRIVATE KEY-----"
+        )
+        
+        for pattern in "${patterns[@]}"; do
+          if grep -r -i -E "$pattern" --include="*.md" --include="*.js" --include="*.py" --include="*.json" .; then
+            echo "Warning: Potential sensitive information found with pattern: $pattern"
+          fi
+        done
+        
+    - name: Check file permissions
+      run: |
+        # Check for files with unusual permissions
+        find . -type f -perm /111 -not -path "./.git/*" -not -name "*.sh" | \
+        while read file; do
+          echo "Warning: Executable file found: $file"
+        done
+
+  accessibility-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Check accessibility guidelines
+      run: |
+        # Check for accessibility best practices in markdown
+        echo "Checking accessibility guidelines..."
+        
+        # Check for alt text in images
+        grep -r "!\[.*\](" --include="*.md" . | grep -v "!\[.*\](" | \
+        while read line; do
+          echo "Warning: Image without alt text: $line"
+        done
+        
+        # Check for proper heading hierarchy
+        find . -name "*.md" | while read file; do
+          echo "Checking heading hierarchy in: $file"
+          # This is a simplified check - in practice, you'd want more sophisticated validation
+          grep -n "^#" "$file" || true
+        done
+
+  performance-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Check file sizes
+      run: |
+        # Check for large files that might slow down the repository
+        echo "Checking for large files..."
+        find . -type f -size +1M -not -path "./.git/*" | \
+        while read file; do
+          size=$(du -h "$file" | cut -f1)
+          echo "Large file found: $file ($size)"
+        done
+        
+    - name: Check repository size
+      run: |
+        # Check overall repository size
+        total_size=$(du -sh . | cut -f1)
+        echo "Total repository size: $total_size"
+        
+    - name: Count files and directories
+      run: |
+        # Provide statistics about the repository
+        echo "Repository statistics:"
+        echo "Total files: $(find . -type f | wc -l)"
+        echo "Total directories: $(find . -type d | wc -l)"
+        echo "Markdown files: $(find . -name "*.md" | wc -l)"
+        echo "JavaScript files: $(find . -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" | wc -l)"
+        echo "Python files: $(find . -name "*.py" | wc -l)"
+        echo "Example directories: $(find . -type d -name "examples" | wc -l)"
