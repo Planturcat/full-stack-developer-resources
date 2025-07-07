@@ -49,7 +49,7 @@ git commit -m "Initial commit: Add comprehensive full-stack educational resource
 - Comprehensive documentation and contribution guidelines"
 
 # Add remote origin (replace with your repository URL)
-git remote add origin https://github.com/yourusername/full-stack-developer-resources.git
+git remote add origin https://github.com/planturcat/full-stack-developer-resources.git
 
 # Push to GitHub
 git branch -M main

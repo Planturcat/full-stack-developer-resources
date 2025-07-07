@@ -167,7 +167,7 @@ This repository contains **60+ detailed guides** with **800+ practical code exam
 ### Quick Start
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/full-stack-developer-resources.git
+   git clone https://github.com/planturcat/full-stack-developer-resources.git
    cd full-stack-developer-resources
    ```
 
