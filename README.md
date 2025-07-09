@@ -15,6 +15,7 @@ This repository contains **60+ detailed guides** with **800+ practical code exam
 | **Database Management** | SQL, PostgreSQL, NoSQL, Design | Beginner to Advanced |
 | **Data Engineering** | ETL/ELT, Pipelines, Big Data Tools | Intermediate to Advanced |
 | **Software Engineering** | Design Patterns, System Design, Best Practices | Intermediate to Expert |
+| **Containerization** | Docker, Docker Compose, Production Deployment | Beginner to Advanced |
 
 ## 🗂️ Repository Structure
 
@@ -91,27 +92,45 @@ This repository contains **60+ detailed guides** with **800+ practical code exam
 │       ├── 📄 03-apache-spark.md
 │       ├── 📄 04-cloud-platforms.md
 │       └── 📁 examples/
-└── 📁 05-Software-Engineering-Principles/
-    ├── 📁 Design-Patterns/
-    │   ├── 📄 01-creational-patterns.md
-    │   ├── 📄 02-structural-patterns.md
-    │   ├── 📄 03-behavioral-patterns.md
-    │   ├── 📄 04-architectural-patterns.md
-    │   └── 📁 examples/
-    ├── 📁 System-Design/
-    │   ├── 📄 01-scalability-concepts.md
-    │   ├── 📄 02-caching-strategies.md
-    │   ├── 📄 03-message-systems.md
-    │   ├── 📄 04-microservices.md
-    │   ├── 📄 05-distributed-systems.md
-    │   └── 📁 examples/
-    └── 📁 Best-Practices/
-        ├── 📄 01-solid-principles.md
-        ├── 📄 02-clean-code.md
-        ├── 📄 03-version-control.md
-        ├── 📄 04-testing-strategies.md
-        ├── 📄 05-devops-practices.md
-        └── 📁 examples/
+├── 📁 05-Software-Engineering-Principles/
+│   ├── 📁 Design-Patterns/
+│   │   ├── 📄 01-creational-patterns.md
+│   │   ├── 📄 02-structural-patterns.md
+│   │   ├── 📄 03-behavioral-patterns.md
+│   │   ├── 📄 04-architectural-patterns.md
+│   │   └── 📁 examples/
+│   ├── 📁 System-Design/
+│   │   ├── 📄 01-scalability-concepts.md
+│   │   ├── 📄 02-caching-strategies.md
+│   │   ├── 📄 03-message-systems.md
+│   │   ├── 📄 04-microservices.md
+│   │   ├── 📄 05-distributed-systems.md
+│   │   └── 📁 examples/
+│   └── 📁 Best-Practices/
+│       ├── 📄 01-solid-principles.md
+│       ├── 📄 02-clean-code.md
+│       ├── 📄 03-version-control.md
+│       ├── 📄 04-testing-strategies.md
+│       ├── 📄 05-devops-practices.md
+│       └── 📁 examples/
+└── 📁 06-Docker-crash-course/
+    ├── 📄 README.md
+    ├── 📄 01-docker-fundamentals.md
+    ├── 📄 02-installation-setup.md
+    ├── 📄 03-images-containers.md
+    ├── 📄 04-dockerfile-creation.md
+    ├── 📄 05-container-management.md
+    ├── 📄 06-volumes-data-persistence.md
+    ├── 📄 07-networking.md
+    ├── 📄 08-docker-compose.md
+    ├── 📄 09-production-deployment.md
+    ├── 📄 10-troubleshooting-debugging.md
+    └── 📁 examples/
+        ├── 📁 hello-world/
+        ├── 📁 python-app/
+        ├── 📁 web-application/
+        ├── 📁 multi-stage-build/
+        └── 📁 production-setup/
 ```
 
 ## 🎯 Learning Paths
@@ -126,7 +145,8 @@ This repository contains **60+ detailed guides** with **800+ practical code exam
 1. **Advanced React** → Context API, performance optimization, testing
 2. **Next.js** → SSR/SSG, routing, API routes
 3. **Backend Development** → Frameworks, authentication, database integration
-4. **System Design Basics** → Scalability, caching, basic patterns
+4. **Docker Fundamentals** → Containerization, Docker Compose, deployment
+5. **System Design Basics** → Scalability, caching, basic patterns
 
 ### 🏆 Advanced Path (12+ months)
 1. **Full-Stack Projects** → Complete applications with all layers
@@ -154,8 +174,9 @@ This repository contains **60+ detailed guides** with **800+ practical code exam
 ### DevOps & Tools
 - **Version Control**: Git, GitHub
 - **CI/CD**: GitHub Actions, Jenkins
-- **Containerization**: Docker, Kubernetes
+- **Containerization**: Docker, Docker Compose, Kubernetes
 - **Monitoring**: Prometheus, Grafana
+- **Production**: Nginx, SSL, Load Balancing
 
 ## 🚀 Getting Started
 
@@ -237,11 +258,12 @@ We welcome contributions! Here's how you can help:
 
 ## 📊 Repository Stats
 
-- **📁 5 Major Sections** covering all aspects of full-stack development
-- **📄 60+ Detailed Guides** with comprehensive explanations
-- **💻 800+ Code Examples** that are production-ready
+- **📁 6 Major Sections** covering all aspects of full-stack development
+- **📄 70+ Detailed Guides** with comprehensive explanations
+- **💻 850+ Code Examples** that are production-ready
 - **🎯 100% Topic Coverage** of modern development stack
 - **⭐ Beginner to Expert** content for all skill levels
+- **🐳 Complete Docker Course** from basics to production deployment
 
 ## 🏆 What Makes This Special
 
@@ -294,5 +316,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 *Last updated: January 2024*
-*Total learning time: 200+ hours of content*
+*Total learning time: 220+ hours of content*
 *Suitable for: Beginners to Advanced developers*
