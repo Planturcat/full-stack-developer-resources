@@ -16,6 +16,7 @@ This repository contains **60+ detailed guides** with **800+ practical code exam
 | **Data Engineering** | ETL/ELT, Pipelines, Big Data Tools | Intermediate to Advanced |
 | **Software Engineering** | Design Patterns, System Design, Best Practices | Intermediate to Expert |
 | **Containerization** | Docker, Docker Compose, Production Deployment | Beginner to Advanced |
+| **Project Management** | Jira, Agile/Scrum, Team Collaboration, Automation | Beginner to Advanced |
 
 ## 🗂️ Repository Structure
 
@@ -113,24 +114,42 @@ This repository contains **60+ detailed guides** with **800+ practical code exam
 │       ├── 📄 04-testing-strategies.md
 │       ├── 📄 05-devops-practices.md
 │       └── 📁 examples/
-└── 📁 06-Docker-crash-course/
+├── 📁 06-Docker-crash-course/
+│   ├── 📄 README.md
+│   ├── 📄 01-docker-fundamentals.md
+│   ├── 📄 02-installation-setup.md
+│   ├── 📄 03-images-containers.md
+│   ├── 📄 04-dockerfile-creation.md
+│   ├── 📄 05-container-management.md
+│   ├── 📄 06-volumes-data-persistence.md
+│   ├── 📄 07-networking.md
+│   ├── 📄 08-docker-compose.md
+│   ├── 📄 09-production-deployment.md
+│   ├── 📄 10-troubleshooting-debugging.md
+│   └── 📁 examples/
+│       ├── 📁 hello-world/
+│       ├── 📁 python-app/
+│       ├── 📁 web-application/
+│       ├── 📁 multi-stage-build/
+│       └── 📁 production-setup/
+└── 📁 07-Jira-Breakdown/
     ├── 📄 README.md
-    ├── 📄 01-docker-fundamentals.md
-    ├── 📄 02-installation-setup.md
-    ├── 📄 03-images-containers.md
-    ├── 📄 04-dockerfile-creation.md
-    ├── 📄 05-container-management.md
-    ├── 📄 06-volumes-data-persistence.md
-    ├── 📄 07-networking.md
-    ├── 📄 08-docker-compose.md
-    ├── 📄 09-production-deployment.md
-    ├── 📄 10-troubleshooting-debugging.md
+    ├── 📄 01-jira-fundamentals.md
+    ├── 📄 02-getting-started.md
+    ├── 📄 03-project-types-templates.md
+    ├── 📄 04-issues-workflow.md
+    ├── 📄 05-agile-scrum-methodology.md
+    ├── 📄 06-boards-workflows.md
+    ├── 📄 07-team-collaboration.md
+    ├── 📄 08-reporting-analytics.md
+    ├── 📄 09-integrations-automation.md
+    ├── 📄 10-best-practices-optimization.md
     └── 📁 examples/
-        ├── 📁 hello-world/
-        ├── 📁 python-app/
-        ├── 📁 web-application/
-        ├── 📁 multi-stage-build/
-        └── 📁 production-setup/
+        ├── 📁 software-project/
+        ├── 📁 business-project/
+        ├── 📁 team-templates/
+        ├── 📁 workflows/
+        └── 📁 automation/
 ```
 
 ## 🎯 Learning Paths
@@ -146,7 +165,8 @@ This repository contains **60+ detailed guides** with **800+ practical code exam
 2. **Next.js** → SSR/SSG, routing, API routes
 3. **Backend Development** → Frameworks, authentication, database integration
 4. **Docker Fundamentals** → Containerization, Docker Compose, deployment
-5. **System Design Basics** → Scalability, caching, basic patterns
+5. **Project Management** → Jira, Agile/Scrum, team collaboration
+6. **System Design Basics** → Scalability, caching, basic patterns
 
 ### 🏆 Advanced Path (12+ months)
 1. **Full-Stack Projects** → Complete applications with all layers
